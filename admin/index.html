@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#F6FBF8">
+  <title>後台管理｜MAX 教育理念島</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpolygon points='32,4 56,18 56,46 32,60 8,46 8,18' fill='%232BB59A'/%3E%3Cpolygon points='32,16 46,24 46,40 32,48 18,40 18,24' fill='%23ffffff' opacity='.9'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Nunito:wght@700;800;900&display=swap">
+  <link rel="stylesheet" href="admin.css">
+  <script src="admin.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+
+  <!-- 啟動中 -->
+  <div id="boot" class="boot" role="status" aria-live="polite">
+    <div class="boot-mark" aria-hidden="true"></div>
+    <p id="bootMsg">載入中…</p>
+  </div>
+
+  <!-- 連線（選擇儲存模式） -->
+  <div id="connect" class="connect" hidden></div>
+
+  <!-- 後台主畫面 -->
+  <div id="shell" class="shell" hidden>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div class="brand-text">
+          <strong>MAX 教育理念島</strong>
+          <small>後台管理</small>
+        </div>
+      </div>
+      <button id="navToggle" class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">
+        <span class="nav-toggle-icon" aria-hidden="true">☰</span>
+        <span id="navToggleLabel">總覽</span>
+      </button>
+      <div class="top-status">
+        <button id="modeBadge" class="mode-badge" type="button" aria-haspopup="dialog" title="切換儲存模式或登出"></button>
+        <span id="dirtyState" class="dirty-state" role="status" aria-live="polite"></span>
+      </div>
+      <div class="top-actions">
+        <button id="btnPreview" class="btn btn-ghost" type="button" title="用目前的草稿在新分頁預覽前台">
+          <span aria-hidden="true">👀</span> 預覽
+        </button>
+        <button id="btnPublish" class="btn btn-primary" type="button">發布</button>
+      </div>
+    </header>
+    <div class="layout">
+      <nav id="nav" class="sidebar" aria-label="後台區塊"></nav>
+      <main id="main" class="main" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <div id="layers"></div>
+  <div id="toasts" class="toasts" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <p class="noscript">這個後台需要啟用 JavaScript 才能使用。</p>
+  </noscript>
+</body>
+</html>

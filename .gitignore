@@ -1,0 +1,7 @@
+data/backups/
+node_modules/
+.claude/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

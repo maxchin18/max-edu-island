@@ -1,0 +1,1773 @@
+{
+  "version": 1,
+  "updatedAt": "2026-10-23T04:53:44.349Z",
+  "site": {
+    "pageTitle": "MAX 教育理念島｜孩子為本，一起長大",
+    "description": "一座島，一個教育信念。14 個理念主題，看見課程、老師、家長與社區如何彼此相連。",
+    "brandTop": "GROW",
+    "brandBottom": "TOGETHER.",
+    "title": "孩子為本，一起長大",
+    "badge": "MAX",
+    "subtitle": "教育理念島",
+    "indexKicker": "THE EDUCATION INDEX",
+    "headline": "讓每個孩子，都被看見。",
+    "intro": "選一座島，走進它的學習風景。",
+    "footer": "© MAX · 教育理念島",
+    "timeSpeed": 2,
+    "timeMode": "auto",
+    "tutorial": [
+      {
+        "title": "每一座島都是一個教育信念",
+        "body": "14 座六角島拼成一所學校的樣子。點一座島，或用右側清單探索每個理念的具體做法。"
+      },
+      {
+        "title": "小人們在島與島之間搬運",
+        "body": "學生、老師、家長、小農、漁民……沿著協作連結來回奔走。點路上的小人，看看他正把什麼帶去哪裡。"
+      },
+      {
+        "title": "四季會自己輪替",
+        "body": "網站依照日期每三個月換一季；也可以用左上角的季節按鈕，手動切換春、夏、秋、冬。"
+      },
+      {
+        "title": "一天也會自己流動",
+        "body": "清晨、白天、黃昏、夜晚的光線會跟著島上的時鐘變化；想停在某個時刻，就手動鎖定或按暫停。"
+      }
+    ],
+    "adminRepo": {
+      "owner": "maxchin18",
+      "repo": "max-edu-island",
+      "branch": "main",
+      "path": "data/site.json"
+    }
+  },
+  "values": [
+    {
+      "id": "M",
+      "name": "有感學習",
+      "en": "Meaningful",
+      "color": "#5DBB7A",
+      "desc": "學習連結生活，孩子知道為什麼而學。"
+    },
+    {
+      "id": "A",
+      "name": "動手實踐",
+      "en": "Action",
+      "color": "#F29A5B",
+      "desc": "做中學、真實任務，把知識變成能力。"
+    },
+    {
+      "id": "X",
+      "name": "跨域探索",
+      "en": "eXplore",
+      "color": "#5B9BEF",
+      "desc": "跨領域、跨世代、跨國界，打開孩子的視野。"
+    }
+  ],
+  "linkBasis": [
+    "校本理念",
+    "課程實踐",
+    "社群共備",
+    "社區協作"
+  ],
+  "phases": [
+    "短期",
+    "中期",
+    "長期",
+    "持續推動",
+    "每學期",
+    "每學年"
+  ],
+  "islands": [
+    {
+      "id": "core",
+      "name": "孩子為本",
+      "icon": "🧒",
+      "color": "#F07C5A",
+      "landmark": "school",
+      "q": 0,
+      "r": 0,
+      "tagline": "每一個決定，都先問：這對孩子好嗎？",
+      "quote": "學校不是為了大人的方便而存在，而是為了孩子的成長而存在。",
+      "values": [
+        "M",
+        "A"
+      ],
+      "source": {
+        "label": "",
+        "url": ""
+      },
+      "items": [
+        {
+          "id": "core-1",
+          "name": "學生學習地圖",
+          "phase": "持續推動",
+          "target": "全校學生",
+          "summary": "盤點一到六年級的學習歷程，讓孩子、老師與家長都看得見「學到哪裡、接下來去哪裡」。",
+          "points": [
+            "六年學習歷程一張圖",
+            "校訂課程與部定課程對應",
+            "每學期回顧與調整"
+          ],
+          "schedule": "每學期期末更新",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "core-2",
+          "name": "差異化教學",
+          "phase": "中期",
+          "target": "各班教師",
+          "summary": "同一堂課、不同起點：用分組、分層任務與多元評量，照顧每個孩子的學習差異。",
+          "points": [
+            "分層學習任務",
+            "多元評量取代單一考卷",
+            "學習扶助即時銜接"
+          ],
+          "schedule": "逐年擴大至全校",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "core-3",
+          "name": "學生自治與提案",
+          "phase": "短期",
+          "target": "中高年級學生",
+          "summary": "成立兒童自治會，讓孩子提出改善校園的提案，在真實事務中學習民主、溝通與負責。",
+          "points": [
+            "每學期學生提案日",
+            "提案可獲經費實作",
+            "自治幹部與師長座談"
+          ],
+          "schedule": "本學年啟動",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "core-4",
+          "name": "心理安全的校園",
+          "phase": "持續推動",
+          "target": "全校師生",
+          "summary": "友善、零霸凌、敢犯錯——孩子在安心的環境裡，才敢舉手、才敢嘗試。",
+          "points": [
+            "友善校園公約",
+            "霸凌即時通報與修復",
+            "犯錯也是學習的一部分"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "food",
+      "name": "食農教育",
+      "icon": "🥬",
+      "color": "#76C267",
+      "landmark": "farm",
+      "q": 1,
+      "r": 0,
+      "tagline": "從產地到餐桌，吃得懂、吃得安心、吃得感恩。",
+      "quote": "當孩子親手種下一棵菜，他就再也不會隨便浪費一口飯。",
+      "values": [
+        "M",
+        "A"
+      ],
+      "source": {
+        "label": "",
+        "url": ""
+      },
+      "items": [
+        {
+          "id": "food-1",
+          "name": "校園小田園",
+          "phase": "持續推動",
+          "target": "全校班級",
+          "summary": "每班認養一畦菜圃，從整地、播種、照顧到收成，把自然、數學與生活課都搬到田裡。",
+          "points": [
+            "每班一畦田",
+            "觀察日誌與成長紀錄",
+            "收成日與家長共享"
+          ],
+          "schedule": "每學期一輪作",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "food-2",
+          "name": "「敲敲蛤蜊」食農課程",
+          "phase": "每學年",
+          "target": "五年級",
+          "summary": "以在地文蛤養殖為主題，結合繪本、漫畫、學習單與教學簡報，帶孩子認識蛤蜊從魚塭到餐桌的旅程。",
+          "points": [
+            "自編繪本與漫畫",
+            "學習單與教學簡報",
+            "結合在地養殖戶"
+          ],
+          "schedule": "五年級校訂課程",
+          "image": "",
+          "link": "https://github.com/maxchin18/knock-knock-clam"
+        },
+        {
+          "id": "food-3",
+          "name": "在地食材營養午餐",
+          "phase": "中期",
+          "target": "全校師生",
+          "summary": "午餐優先採用在地、當季食材，並附上「食材故事卡」，讓每一口都吃得懂來源。",
+          "points": [
+            "在地當季食材",
+            "食材故事卡",
+            "減少剩食"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "food-4",
+          "name": "食農教案共備",
+          "phase": "短期",
+          "target": "校內教師",
+          "summary": "依臺南市食農教育優良教案格式，跨領域共備教案，整理圖文並茂的教學資源。",
+          "points": [
+            "跨領域共備",
+            "教案規格化與分享",
+            "參加教案甄選"
+          ],
+          "schedule": "每學期一次共備週",
+          "image": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "ocean",
+      "name": "海洋教育",
+      "icon": "🐟",
+      "color": "#4BB3D9",
+      "landmark": "harbor",
+      "q": 1,
+      "r": -1,
+      "tagline": "台江的孩子，認識自己的海。",
+      "quote": "海不是課本上的一張圖，是孩子家門外的風景，也是家人的生計。",
+      "values": [
+        "M",
+        "X"
+      ],
+      "source": {
+        "label": "",
+        "url": ""
+      },
+      "items": [
+        {
+          "id": "ocean-1",
+          "name": "超級魚戰士—台灣鯛",
+          "phase": "每學年",
+          "target": "中高年級",
+          "summary": "從台灣鯛的養殖、營養到料理，搭配教案、自編繪本、繪本動畫、學習單與魚鬆三折頁，認識在地重要漁產。",
+          "points": [
+            "自編繪本與動畫",
+            "魚鬆三折頁實作",
+            "Padlet 議題交流"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": "https://github.com/maxchin18/super-fish-warrior"
+        },
+        {
+          "id": "ocean-2",
+          "name": "三魚海味探索",
+          "phase": "中期",
+          "target": "高年級",
+          "summary": "以東港、蚵仔寮、大潭三個漁港為題，用海洋食農繪本與配音動畫，比較不同漁港的漁業文化。",
+          "points": [
+            "三個漁港比較",
+            "學生配音動畫",
+            "海洋職人訪談"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": "https://github.com/maxchin18/sanyu-picture-book"
+        },
+        {
+          "id": "ocean-3",
+          "name": "水域安全與自救",
+          "phase": "持續推動",
+          "target": "全校學生",
+          "summary": "游泳與自救是海邊孩子的基本功，目標讓每位畢業生都具備水域自救能力。",
+          "points": [
+            "游泳課程",
+            "水域安全宣導",
+            "畢業生自救能力檢核"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "ocean-4",
+          "name": "台江濕地踏查",
+          "phase": "每學期",
+          "target": "中年級",
+          "summary": "走進台江國家公園與四草濕地，觀察紅樹林、招潮蟹與候鳥，學會欣賞也學會守護。",
+          "points": [
+            "紅樹林生態觀察",
+            "候鳥季賞鳥",
+            "淨灘行動"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "name": "閱讀素養",
+      "icon": "📚",
+      "color": "#A787D9",
+      "landmark": "library",
+      "q": 0,
+      "r": -1,
+      "tagline": "讀得懂世界，也說得出自己。",
+      "quote": "閱讀不是為了考試，而是讓孩子擁有一輩子帶得走的好奇心。",
+      "values": [
+        "M",
+        "X"
+      ],
+      "source": {
+        "label": "",
+        "url": ""
+      },
+      "items": [
+        {
+          "id": "read-1",
+          "name": "晨讀十分鐘",
+          "phase": "持續推動",
+          "target": "全校學生",
+          "summary": "每天早上十分鐘安靜閱讀，老師也一起讀，讓閱讀成為生活習慣。",
+          "points": [
+            "師生共讀",
+            "自選書目",
+            "不考試、不寫心得的純閱讀"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "read-2",
+          "name": "自編繪本創作",
+          "phase": "中期",
+          "target": "中高年級",
+          "summary": "把在地故事、食農與海洋經驗寫成繪本，再配音做成動畫，讓孩子從讀者變成作者。",
+          "points": [
+            "故事構思與分鏡",
+            "繪本排版",
+            "配音與動畫"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "read-3",
+          "name": "閱讀護照",
+          "phase": "短期",
+          "target": "低中年級",
+          "summary": "用閱讀護照記錄閱讀足跡，搭配班級共讀與好書分享。",
+          "points": [
+            "分級閱讀推薦",
+            "班級共讀",
+            "好書分享會"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "read-4",
+          "name": "圖書館學習中心",
+          "phase": "長期",
+          "target": "全校師生",
+          "summary": "把圖書館打造成可以討論、查資料、做專題的學習中心。",
+          "points": [
+            "彈性學習空間",
+            "主題書展",
+            "資訊檢索教學"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "name": "AI 與數位學習",
+      "icon": "🤖",
+      "color": "#5B8DEF",
+      "landmark": "tech",
+      "q": -1,
+      "r": 0,
+      "tagline": "讓科技成為孩子的翅膀，不是枷鎖。",
+      "quote": "會用 AI 不稀奇；會問好問題、會判斷真假，才是未來的能力。",
+      "values": [
+        "A",
+        "X"
+      ],
+      "source": {
+        "label": "",
+        "url": ""
+      },
+      "items": [
+        {
+          "id": "ai-1",
+          "name": "AI 素養課程",
+          "phase": "中期",
+          "target": "高年級",
+          "summary": "認識生成式 AI 能做什麼、不能做什麼，練習提問、查證與負責任地使用。",
+          "points": [
+            "提問與提示設計",
+            "查證與判讀",
+            "AI 倫理與隱私"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "ai-2",
+          "name": "有意義的平板學習",
+          "phase": "持續推動",
+          "target": "全校學生",
+          "summary": "生生用平板不是為了滑，而是為了探究、創作與合作。",
+          "points": [
+            "數位創作",
+            "線上協作",
+            "螢幕時間自律"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "ai-3",
+          "name": "教師 AI 共學",
+          "phase": "短期",
+          "target": "全校教師",
+          "summary": "教師社群一起試用 AI 工具，把時間從重複工作中省下來，留給孩子。",
+          "points": [
+            "AI 備課工具",
+            "自動化行政流程",
+            "使用經驗分享"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "ai-4",
+          "name": "微氣候觀測站",
+          "phase": "中期",
+          "target": "中高年級",
+          "summary": "用 ESP8266 與溫溼度感測器建立校園觀測站，資料上雲，讓孩子用真實數據學科學。",
+          "points": [
+            "感測器實作",
+            "雲端資料視覺化",
+            "校園微氣候探究"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": "https://github.com/maxchin18/microclimate-station"
+        },
+        {
+          "id": "ai-5",
+          "name": "數位公民",
+          "phase": "持續推動",
+          "target": "全校學生",
+          "summary": "網路禮儀、資訊安全與防詐，培養負責任的數位公民。",
+          "points": [
+            "個資保護",
+            "辨識假訊息",
+            "網路霸凌防治"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "sport",
+      "name": "運動與健康",
+      "icon": "🏃",
+      "color": "#F5B041",
+      "landmark": "sports",
+      "q": -1,
+      "r": 1,
+      "tagline": "先有健康的身體，才有快樂的學習。",
+      "quote": "跑完一圈操場的孩子，臉上的笑容比任何獎狀都亮。",
+      "values": [
+        "A"
+      ],
+      "source": {
+        "label": "",
+        "url": ""
+      },
+      "items": [
+        {
+          "id": "sport-1",
+          "name": "極限鐵人推廣路跑",
+          "phase": "每學年",
+          "target": "親師生與社區",
+          "summary": "舉辦推廣路跑，讓親師生與社區一起動起來，用汗水串起學校與社區。",
+          "points": [
+            "線上報名與後台核對",
+            "親子組共同參與",
+            "社區志工支援"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "sport-2",
+          "name": "每日運動 60 分鐘",
+          "phase": "持續推動",
+          "target": "全校學生",
+          "summary": "結合體育課、晨間活動與下課時間，讓孩子每天累積 60 分鐘身體活動。",
+          "points": [
+            "晨間律動",
+            "下課走出教室",
+            "班際運動競賽"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "sport-3",
+          "name": "視力與睡眠保健",
+          "phase": "持續推動",
+          "target": "全校學生",
+          "summary": "天天戶外 120 分鐘、規律睡眠，守護孩子的視力與成長。",
+          "points": [
+            "戶外活動",
+            "3C 使用規範",
+            "健康檢查追蹤"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "sport-4",
+          "name": "多元運動社團",
+          "phase": "中期",
+          "target": "中高年級",
+          "summary": "開設多元運動社團與校隊，讓每個孩子找到自己喜歡的運動。",
+          "points": [
+            "多元社團",
+            "校隊培訓",
+            "運動家精神"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "culture",
+      "name": "在地文化",
+      "icon": "🏮",
+      "color": "#E8705E",
+      "landmark": "temple",
+      "q": 0,
+      "r": 1,
+      "tagline": "認識腳下的土地，才知道自己從哪裡來。",
+      "quote": "家鄉的故事，要由孩子自己說出來，才會一直活下去。",
+      "values": [
+        "M",
+        "X"
+      ],
+      "source": {
+        "label": "",
+        "url": ""
+      },
+      "items": [
+        {
+          "id": "culture-1",
+          "name": "台江文化課程",
+          "phase": "長期",
+          "target": "全校學生",
+          "summary": "以鹿耳門、城西與台江內海的歷史為主軸，發展校訂在地文化課程。",
+          "points": [
+            "台江內海歷史",
+            "廟宇與信仰文化",
+            "在地產業"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "culture-2",
+          "name": "耆老說故事",
+          "phase": "每學期",
+          "target": "低中年級",
+          "summary": "邀請社區耆老進班講古，把老照片、老地名與老故事傳給下一代。",
+          "points": [
+            "耆老進班",
+            "老照片展",
+            "口述歷史紀錄"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "culture-3",
+          "name": "社區踏查地圖",
+          "phase": "中期",
+          "target": "中年級",
+          "summary": "孩子走讀社區，繪製屬於自己的社區地圖，認識道路、店家與地景。",
+          "points": [
+            "走讀路線",
+            "手繪地圖",
+            "社區店家訪談"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "culture-4",
+          "name": "本土語文日常化",
+          "phase": "持續推動",
+          "target": "全校師生",
+          "summary": "台語不只在課堂上，也在朝會、廣播與日常對話裡。",
+          "points": [
+            "本土語日",
+            "台語廣播",
+            "鄉土歌謠"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "sel",
+      "name": "社會情緒學習",
+      "icon": "💛",
+      "color": "#F28DB2",
+      "landmark": "heart",
+      "q": 1,
+      "r": 1,
+      "tagline": "先照顧好心，學習才會發生。",
+      "quote": "孩子的情緒被接住了，才有力氣去面對困難。",
+      "values": [
+        "M"
+      ],
+      "source": {
+        "label": "",
+        "url": ""
+      },
+      "items": [
+        {
+          "id": "sel-1",
+          "name": "情緒教育課程",
+          "phase": "中期",
+          "target": "全校學生",
+          "summary": "系統化地教孩子辨識、表達與調節情緒，培養同理心與人際能力。",
+          "points": [
+            "情緒辨識",
+            "正向表達",
+            "壓力調節"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "sel-2",
+          "name": "修復式正義",
+          "phase": "短期",
+          "target": "全校師生",
+          "summary": "衝突發生後，不只是處罰，更重要的是讓雙方修復關係、學會負責。",
+          "points": [
+            "修復式對話",
+            "班級圓圈會議",
+            "同儕調解員"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "sel-3",
+          "name": "三級輔導支持",
+          "phase": "持續推動",
+          "target": "有需要的學生",
+          "summary": "導師、輔導老師、心理師與社工合作，讓需要幫助的孩子被及時接住。",
+          "points": [
+            "早期發現",
+            "個案會議",
+            "跨專業合作"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "sel-4",
+          "name": "感謝與讚美文化",
+          "phase": "持續推動",
+          "target": "全校師生",
+          "summary": "把感謝說出口：用感謝狀、讚美牆，讓善意在校園裡流動。",
+          "points": [
+            "感謝狀",
+            "讚美牆",
+            "好人好事分享"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "teacher",
+      "name": "教師專業",
+      "icon": "🍎",
+      "color": "#F09A4E",
+      "landmark": "hall",
+      "q": 1,
+      "r": -2,
+      "tagline": "老師有餘裕，孩子才有好教育。",
+      "quote": "減掉不必要的行政，把時間還給老師，就是把老師還給孩子。",
+      "values": [
+        "A"
+      ],
+      "source": {
+        "label": "",
+        "url": ""
+      },
+      "items": [
+        {
+          "id": "teacher-1",
+          "name": "共備觀議課社群",
+          "phase": "持續推動",
+          "target": "全校教師",
+          "summary": "以教師專業社群為核心，共同備課、公開觀課、議課回饋。",
+          "points": [
+            "領域共備",
+            "公開授課",
+            "議課回饋"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "teacher-2",
+          "name": "無痛行政",
+          "phase": "短期",
+          "target": "全校教職員",
+          "summary": "用數位表單與自動化工具簡化請購核銷、差勤與填報流程，減少重複作業。",
+          "points": [
+            "流程數位化",
+            "自動化小工具",
+            "減少重複填報"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "teacher-3",
+          "name": "教師增能工作坊",
+          "phase": "每學期",
+          "target": "全校教師",
+          "summary": "AI、食農、海洋、SEL 等主題工作坊，讓老師持續成長。",
+          "points": [
+            "主題工作坊",
+            "校際交流",
+            "實作成果分享"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "teacher-4",
+          "name": "新進教師陪伴",
+          "phase": "中期",
+          "target": "新進與代理教師",
+          "summary": "資深教師一對一陪伴，協助新進老師適應班級經營與學校文化。",
+          "points": [
+            "夥伴教師",
+            "班級經營支持",
+            "定期關懷"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "family",
+      "name": "親師夥伴",
+      "icon": "🏡",
+      "color": "#F2C94C",
+      "landmark": "home",
+      "q": 2,
+      "r": -2,
+      "tagline": "家長不是客人，是一起養育孩子的夥伴。",
+      "quote": "學校和家庭站在同一邊，孩子就不會孤單。",
+      "values": [
+        "A",
+        "M"
+      ],
+      "source": {
+        "label": "",
+        "url": ""
+      },
+      "items": [
+        {
+          "id": "family-1",
+          "name": "親職講座與親子共學",
+          "phase": "每學期",
+          "target": "全校家長",
+          "summary": "以 3C 使用、情緒教養、閱讀陪伴等主題辦理講座與親子共學。",
+          "points": [
+            "主題講座",
+            "親子共學活動",
+            "線上回放"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "family-2",
+          "name": "透明溝通",
+          "phase": "持續推動",
+          "target": "全校家長",
+          "summary": "班級與學校資訊即時公開，重要事項事前說明、事後回報。",
+          "points": [
+            "班級溝通平台",
+            "校務說明會",
+            "意見回饋管道"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "family-3",
+          "name": "家長志工團",
+          "phase": "持續推動",
+          "target": "家長與社區",
+          "summary": "家長志工投入交通導護、圖書館、小田園與活動支援。",
+          "points": [
+            "導護志工",
+            "圖書志工",
+            "田園志工"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "family-4",
+          "name": "親子活動日",
+          "phase": "每學期",
+          "target": "親子",
+          "summary": "收成日、路跑、成果發表，讓家長走進校園，看見孩子的成長。",
+          "points": [
+            "收成日",
+            "成果發表會",
+            "親子路跑"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "green",
+      "name": "永續校園",
+      "icon": "🌍",
+      "color": "#4CC3A0",
+      "landmark": "garden",
+      "q": 2,
+      "r": -1,
+      "tagline": "愛護地球，從愛護我們的校園開始。",
+      "quote": "永續不是口號，是孩子每天隨手關燈、自備餐具的小習慣。",
+      "values": [
+        "A",
+        "X"
+      ],
+      "source": {
+        "label": "",
+        "url": ""
+      },
+      "items": [
+        {
+          "id": "green-1",
+          "name": "校園綠化與原生植物",
+          "phase": "長期",
+          "target": "全校師生",
+          "summary": "種植在地原生植物，打造蝴蝶與鳥類願意停留的生態校園。",
+          "points": [
+            "原生植物園",
+            "生態池",
+            "植物解說牌"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "green-2",
+          "name": "減塑與資源回收",
+          "phase": "持續推動",
+          "target": "全校師生",
+          "summary": "自備餐具、垃圾分類、資源回收，從日常做起。",
+          "points": [
+            "自備餐具",
+            "垃圾分類",
+            "回收再利用"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "green-3",
+          "name": "SDGs 專題探究",
+          "phase": "中期",
+          "target": "高年級",
+          "summary": "以聯合國永續發展目標為框架，讓孩子從在地問題出發做專題。",
+          "points": [
+            "議題探究",
+            "行動方案",
+            "成果發表"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "green-4",
+          "name": "能源教育",
+          "phase": "長期",
+          "target": "中高年級",
+          "summary": "認識太陽能與節能，用電量數據讓節能看得見。",
+          "points": [
+            "太陽能板",
+            "用電監測",
+            "節能競賽"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "art",
+      "name": "美感教育",
+      "icon": "🎨",
+      "color": "#E57CC0",
+      "landmark": "art",
+      "q": -2,
+      "r": 1,
+      "tagline": "美，是一種看見生活的能力。",
+      "quote": "讓孩子在校園的每個角落，都能遇見美好。",
+      "values": [
+        "M",
+        "X"
+      ],
+      "source": {
+        "label": "",
+        "url": ""
+      },
+      "items": [
+        {
+          "id": "art-1",
+          "name": "生活美感課程",
+          "phase": "中期",
+          "target": "全校學生",
+          "summary": "從色彩、構成、質感出發，把美感帶進日常生活與校園空間。",
+          "points": [
+            "美感構面",
+            "生活美學",
+            "校園空間改造"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "art-2",
+          "name": "校園藝廊",
+          "phase": "持續推動",
+          "target": "全校學生",
+          "summary": "走廊與川堂變成藝廊，定期展出孩子的作品。",
+          "points": [
+            "主題策展",
+            "學生導覽員",
+            "線上藝廊"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "art-3",
+          "name": "繪本動畫創作",
+          "phase": "中期",
+          "target": "中高年級",
+          "summary": "結合閱讀與科技，把繪本變成會動的動畫，讓故事有聲音。",
+          "points": [
+            "分鏡設計",
+            "數位繪圖",
+            "配音配樂"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "art-4",
+          "name": "班級音樂會",
+          "phase": "每學期",
+          "target": "全校學生",
+          "summary": "每個班都有上台的機會，用音樂與表演展現自己。",
+          "points": [
+            "班級音樂會",
+            "社團展演",
+            "藝文欣賞"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "inclusion",
+      "name": "適性與融合",
+      "icon": "🧩",
+      "color": "#8D86E8",
+      "landmark": "puzzle",
+      "q": -2,
+      "r": 2,
+      "tagline": "每個孩子都不一樣，每個孩子都很重要。",
+      "quote": "教育的公平，是給每個孩子他需要的，而不是給每個人一樣的。",
+      "values": [
+        "M",
+        "A"
+      ],
+      "source": {
+        "label": "",
+        "url": ""
+      },
+      "items": [
+        {
+          "id": "inclusion-1",
+          "name": "融合教育",
+          "phase": "持續推動",
+          "target": "特教學生與普通班",
+          "summary": "特教與普通班老師合作，讓有特殊需求的孩子在普通班也能好好學習。",
+          "points": [
+            "普特合作",
+            "調整課程與評量",
+            "同儕支持"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "inclusion-2",
+          "name": "學習扶助",
+          "phase": "持續推動",
+          "target": "需要支持的學生",
+          "summary": "及早發現學習落後，以小組、個別化方式補強基本能力。",
+          "points": [
+            "科技化評量",
+            "小組扶助",
+            "進步追蹤"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "inclusion-3",
+          "name": "多元展能",
+          "phase": "中期",
+          "target": "全校學生",
+          "summary": "資優、藝術、運動、實作……每一種天賦都有被看見的舞台。",
+          "points": [
+            "多元社團",
+            "展能舞台",
+            "優勢學習"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "inclusion-4",
+          "name": "個別化教育計畫",
+          "phase": "持續推動",
+          "target": "特教學生與家長",
+          "summary": "親師與專業團隊共同擬定 IEP，讓支持更精準。",
+          "points": [
+            "IEP 會議",
+            "專業團隊",
+            "定期檢核"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "id": "global",
+      "name": "國際教育",
+      "icon": "✈️",
+      "color": "#3CC1C7",
+      "landmark": "globe",
+      "q": -1,
+      "r": 2,
+      "tagline": "立足台江，飛向世界。",
+      "quote": "先愛自己的家鄉，才能用自信的姿態走向世界；國際教育，是讓孩子帶著家鄉去旅行。",
+      "values": [
+        "X",
+        "M"
+      ],
+      "source": {
+        "label": "",
+        "url": ""
+      },
+      "items": [
+        {
+          "id": "global-1",
+          "name": "國際教育融入課程",
+          "phase": "中期",
+          "target": "全校學生",
+          "summary": "依中小學國際教育 2.0 精神，把全球議題、多元文化與國際素養融入各領域課程。",
+          "points": [
+            "國際議題融入各領域",
+            "全球素養指標",
+            "跨領域主題課程"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "global-2",
+          "name": "國際交流與姊妹校",
+          "phase": "短期",
+          "target": "高年級",
+          "summary": "與海外學校視訊交流、互寄筆友信與文化禮物，用英語介紹台江、食農與海洋文化。",
+          "points": [
+            "線上視訊交流",
+            "國際筆友信",
+            "文化禮物交換"
+          ],
+          "schedule": "每學期至少一次",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "global-3",
+          "name": "雙語融入課程",
+          "phase": "中期",
+          "target": "中高年級",
+          "summary": "在體育、藝術、生活等領域融入日常英語，讓英語成為溝通的工具而不只是科目。",
+          "points": [
+            "部分領域雙語",
+            "課室英語",
+            "英語情境角落"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "global-4",
+          "name": "學校國際化",
+          "phase": "長期",
+          "target": "全校師生",
+          "summary": "校園雙語標示、國際化行政與接待能力，讓學校隨時準備好迎接世界的朋友。",
+          "points": [
+            "雙語校園環境",
+            "國際接待小大使",
+            "教師國際教育增能"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "global-5",
+          "name": "世界公民與 SDGs",
+          "phase": "長期",
+          "target": "全校學生",
+          "summary": "從 SDGs 與全球議題出發，培養關心世界、尊重多元、願意行動的世界公民。",
+          "points": [
+            "全球議題探究",
+            "國際志工故事",
+            "在地行動連結全球"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        },
+        {
+          "id": "global-6",
+          "name": "新住民語文與文化",
+          "phase": "持續推動",
+          "target": "全校學生",
+          "summary": "認識新住民家庭的語言與文化，讓多元成為學校最珍貴的國際資產。",
+          "points": [
+            "新住民語文",
+            "多元文化週",
+            "家長母國分享"
+          ],
+          "schedule": "",
+          "image": "",
+          "link": ""
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "id": "C1",
+      "from": "core",
+      "to": [
+        "read",
+        "ai",
+        "sport",
+        "sel",
+        "inclusion",
+        "teacher",
+        "family"
+      ],
+      "title": "以學生學習為核心，校務決策先看孩子需要",
+      "basis": "校本理念"
+    },
+    {
+      "id": "C2",
+      "from": "food",
+      "to": [
+        "ocean",
+        "culture"
+      ],
+      "title": "台江漁產與農產進課堂：從魚塭、田園到餐桌",
+      "basis": "課程實踐"
+    },
+    {
+      "id": "C3",
+      "from": "ocean",
+      "to": [
+        "read",
+        "art"
+      ],
+      "title": "海洋故事變成自編繪本與配音動畫",
+      "basis": "課程實踐"
+    },
+    {
+      "id": "C4",
+      "from": "ai",
+      "to": [
+        "teacher"
+      ],
+      "title": "AI 工具與自動化流程，減輕老師備課與行政負擔",
+      "basis": "社群共備"
+    },
+    {
+      "id": "C5",
+      "from": "ai",
+      "to": [
+        "green"
+      ],
+      "title": "微氣候站數據支援校園環境探究",
+      "basis": "課程實踐"
+    },
+    {
+      "id": "C6",
+      "from": "sport",
+      "to": [
+        "family",
+        "culture"
+      ],
+      "title": "推廣路跑串起家長與社區",
+      "basis": "社區協作"
+    },
+    {
+      "id": "C7",
+      "from": "culture",
+      "to": [
+        "global"
+      ],
+      "title": "用英語介紹台江，把家鄉說給世界聽",
+      "basis": "課程實踐"
+    },
+    {
+      "id": "C8",
+      "from": "sel",
+      "to": [
+        "inclusion",
+        "core"
+      ],
+      "title": "情緒支持與融合教育，讓每個孩子安心學習",
+      "basis": "校本理念"
+    },
+    {
+      "id": "C9",
+      "from": "teacher",
+      "to": [
+        "core",
+        "read",
+        "food"
+      ],
+      "title": "共備觀議課，把好教學帶進每間教室",
+      "basis": "社群共備"
+    },
+    {
+      "id": "C10",
+      "from": "family",
+      "to": [
+        "food",
+        "sel"
+      ],
+      "title": "家長志工走進小田園，也一起陪伴孩子",
+      "basis": "社區協作"
+    },
+    {
+      "id": "C11",
+      "from": "green",
+      "to": [
+        "food",
+        "global"
+      ],
+      "title": "SDGs 專題連結食農與全球議題",
+      "basis": "課程實踐"
+    },
+    {
+      "id": "C12",
+      "from": "read",
+      "to": [
+        "art",
+        "inclusion"
+      ],
+      "title": "共讀與創作，讓不同能力的孩子都能表達",
+      "basis": "課程實踐"
+    },
+    {
+      "id": "C13",
+      "from": "art",
+      "to": [
+        "culture"
+      ],
+      "title": "廟宇彩繪與在地美學走進課堂",
+      "basis": "社區協作"
+    },
+    {
+      "id": "C14",
+      "from": "inclusion",
+      "to": [
+        "teacher"
+      ],
+      "title": "特教知能研習，普特老師一起成長",
+      "basis": "社群共備"
+    },
+    {
+      "id": "C15",
+      "from": "global",
+      "to": [
+        "ai"
+      ],
+      "title": "數位工具打開線上國際交流",
+      "basis": "課程實踐"
+    },
+    {
+      "id": "C16",
+      "from": "food",
+      "to": [
+        "sport"
+      ],
+      "title": "均衡飲食加上健康體能，長出有力氣的孩子",
+      "basis": "校本理念"
+    },
+    {
+      "id": "C17",
+      "from": "global",
+      "to": [
+        "read",
+        "culture",
+        "food"
+      ],
+      "title": "國際筆友與文化交流，讓世界走進每個領域",
+      "basis": "課程實踐"
+    }
+  ],
+  "personTypes": [
+    {
+      "id": "student",
+      "name": "學生",
+      "emoji": "🎒",
+      "color": "#F5B041",
+      "count": 14,
+      "desc": "島上的主角。帶著好奇心在每座島之間探索、學習、創作。",
+      "homes": [],
+      "carry": [
+        {
+          "emoji": "📒",
+          "name": "學習單"
+        },
+        {
+          "emoji": "🎨",
+          "name": "作品"
+        },
+        {
+          "emoji": "🥬",
+          "name": "小田園蔬菜"
+        },
+        {
+          "emoji": "📘",
+          "name": "自編繪本"
+        }
+      ]
+    },
+    {
+      "id": "teacher",
+      "name": "老師",
+      "emoji": "🧑‍🏫",
+      "color": "#5B8DEF",
+      "count": 8,
+      "desc": "把各座島的資源串成課程，在共備與教學之間來回奔走。",
+      "homes": [
+        "teacher",
+        "core",
+        "read",
+        "ai"
+      ],
+      "carry": [
+        {
+          "emoji": "📋",
+          "name": "教案"
+        },
+        {
+          "emoji": "💻",
+          "name": "平板"
+        },
+        {
+          "emoji": "📚",
+          "name": "教材"
+        }
+      ]
+    },
+    {
+      "id": "parent",
+      "name": "家長",
+      "emoji": "👪",
+      "color": "#F28DB2",
+      "count": 6,
+      "desc": "學校最重要的夥伴，帶來支持、陪伴與在地的生活經驗。",
+      "homes": [
+        "family",
+        "sel",
+        "food"
+      ],
+      "carry": [
+        {
+          "emoji": "🍱",
+          "name": "愛心便當"
+        },
+        {
+          "emoji": "🤝",
+          "name": "支持"
+        },
+        {
+          "emoji": "💬",
+          "name": "對話"
+        }
+      ]
+    },
+    {
+      "id": "farmer",
+      "name": "小農",
+      "emoji": "👩‍🌾",
+      "color": "#76C267",
+      "count": 4,
+      "desc": "把田裡的知識與當季食材帶進校園。",
+      "homes": [
+        "food",
+        "green"
+      ],
+      "carry": [
+        {
+          "emoji": "🧺",
+          "name": "菜籃"
+        },
+        {
+          "emoji": "🌾",
+          "name": "稻穗"
+        },
+        {
+          "emoji": "🌱",
+          "name": "菜苗"
+        }
+      ]
+    },
+    {
+      "id": "fisher",
+      "name": "漁民",
+      "emoji": "🎣",
+      "color": "#4BB3D9",
+      "count": 4,
+      "desc": "台江的海洋職人，帶孩子認識漁港、魚塭與海的故事。",
+      "homes": [
+        "ocean",
+        "food"
+      ],
+      "carry": [
+        {
+          "emoji": "🐟",
+          "name": "台灣鯛"
+        },
+        {
+          "emoji": "🦪",
+          "name": "文蛤"
+        },
+        {
+          "emoji": "🦐",
+          "name": "蝦子"
+        }
+      ]
+    },
+    {
+      "id": "elder",
+      "name": "社區耆老",
+      "emoji": "👴",
+      "color": "#C08A5B",
+      "count": 3,
+      "desc": "會講古的阿公阿嬤，把老地名與老故事傳下去。",
+      "homes": [
+        "culture"
+      ],
+      "carry": [
+        {
+          "emoji": "🏮",
+          "name": "故事燈籠"
+        },
+        {
+          "emoji": "📜",
+          "name": "老照片"
+        }
+      ]
+    },
+    {
+      "id": "volunteer",
+      "name": "志工",
+      "emoji": "🙋",
+      "color": "#4CC3A0",
+      "count": 3,
+      "desc": "導護、圖書、田園……哪裡需要就往哪裡去。",
+      "homes": [
+        "family",
+        "green"
+      ],
+      "carry": [
+        {
+          "emoji": "📦",
+          "name": "物資"
+        },
+        {
+          "emoji": "🌳",
+          "name": "樹苗"
+        }
+      ]
+    },
+    {
+      "id": "partner",
+      "name": "大學夥伴",
+      "emoji": "🎓",
+      "color": "#8D86E8",
+      "count": 2,
+      "desc": "大學 USR 與研究夥伴，帶來新的方法與數據。",
+      "homes": [
+        "ai",
+        "teacher",
+        "green"
+      ],
+      "carry": [
+        {
+          "emoji": "🔬",
+          "name": "研究方法"
+        },
+        {
+          "emoji": "📊",
+          "name": "數據"
+        }
+      ]
+    },
+    {
+      "id": "global-partner",
+      "name": "國際夥伴",
+      "emoji": "🌏",
+      "color": "#3CC1C7",
+      "count": 3,
+      "desc": "外籍老師與海外姊妹校朋友，搭著飛機來，把世界帶進教室。",
+      "homes": [
+        "global",
+        "read",
+        "culture"
+      ],
+      "carry": [
+        {
+          "emoji": "✉️",
+          "name": "國際筆友信"
+        },
+        {
+          "emoji": "🗺️",
+          "name": "世界地圖"
+        },
+        {
+          "emoji": "🎁",
+          "name": "文化禮物"
+        }
+      ]
+    }
+  ],
+  "seasons": {
+    "mode": "auto",
+    "list": [
+      {
+        "id": "spring",
+        "name": "春",
+        "title": "春・萌芽",
+        "emoji": "🌸",
+        "months": [
+          3,
+          4,
+          5
+        ],
+        "tagline": "新芽冒出來的季節，適合播下好奇心。",
+        "accent": "#E2789A",
+        "focus": [
+          "food",
+          "read"
+        ],
+        "particle": "petal"
+      },
+      {
+        "id": "summer",
+        "name": "夏",
+        "title": "夏・探索",
+        "emoji": "☀️",
+        "months": [
+          6,
+          7,
+          8
+        ],
+        "tagline": "陽光正好，走出教室去探險。",
+        "accent": "#2FA9C7",
+        "focus": [
+          "ocean",
+          "sport"
+        ],
+        "particle": "firefly"
+      },
+      {
+        "id": "autumn",
+        "name": "秋",
+        "title": "秋・收穫",
+        "emoji": "🍁",
+        "months": [
+          9,
+          10,
+          11
+        ],
+        "tagline": "收成的季節，看見孩子一路走來的成長。",
+        "accent": "#E58A4A",
+        "focus": [
+          "food",
+          "culture"
+        ],
+        "particle": "leaf"
+      },
+      {
+        "id": "winter",
+        "name": "冬",
+        "title": "冬・沉澱",
+        "emoji": "❄️",
+        "months": [
+          12,
+          1,
+          2
+        ],
+        "tagline": "放慢腳步，陪孩子整理、反思與蓄力。",
+        "accent": "#5B8CC9",
+        "focus": [
+          "sel",
+          "read"
+        ],
+        "particle": "snow"
+      }
+    ]
+  },
+  "airport": {
+    "enabled": true,
+    "island": "global",
+    "planes": 2,
+    "partners": [
+      {
+        "flag": "🇯🇵",
+        "name": "日本・姊妹校",
+        "carry": "視訊交流邀請"
+      },
+      {
+        "flag": "🇰🇷",
+        "name": "韓國・國際筆友",
+        "carry": "筆友信"
+      },
+      {
+        "flag": "🇺🇸",
+        "name": "美國・線上共學班",
+        "carry": "雙語專題"
+      },
+      {
+        "flag": "🇻🇳",
+        "name": "越南・新住民文化",
+        "carry": "母語繪本"
+      },
+      {
+        "flag": "🇦🇺",
+        "name": "澳洲・海洋教育夥伴",
+        "carry": "海洋保育計畫"
+      },
+      {
+        "flag": "🇫🇷",
+        "name": "法國・美感交流",
+        "carry": "藝術明信片"
+      }
+    ]
+  }
+}

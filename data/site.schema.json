@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://maxchin18.github.io/max-edu-island/data/site.schema.json",
+  "title": "MAX 教育理念島資料",
+  "description": "網站的全部內容。前台、後台與 tools/site.mjs 都只讀寫這個檔案。參照完整性（例如連結指向的島必須存在）由 `node tools/site.mjs validate` 檢查。",
+  "type": "object",
+  "required": ["site", "values", "islands", "links", "personTypes", "seasons"],
+  "properties": {
+    "version": { "type": "integer", "description": "資料格式版本，目前為 1" },
+    "updatedAt": { "type": "string", "description": "最後發布時間（ISO 8601），後台與工具會自動更新" },
+    "site": {
+      "type": "object",
+      "description": "網站文字與設定",
+      "properties": {
+        "pageTitle": { "type": "string", "description": "瀏覽器分頁標題" },
+        "description": { "type": "string", "description": "搜尋引擎與分享預覽的描述" },
+        "brandTop": { "type": "string", "description": "左上大字第一行（英文較好看）" },
+        "brandBottom": { "type": "string", "description": "左上大字第二行" },
+        "title": { "type": "string", "description": "品牌旁的中文主標" },
+        "badge": { "type": "string", "description": "副標前的強調字，例如 MAX" },
+        "subtitle": { "type": "string" },
+        "indexKicker": { "type": "string", "description": "右側清單上方的小字" },
+        "headline": { "type": "string", "description": "右側清單大標" },
+        "intro": { "type": "string" },
+        "footer": { "type": "string" },
+        "timeMode": { "enum": ["auto", "dawn", "day", "dusk", "night"], "description": "預設時段；auto = 時間自己流動" },
+        "timeSpeed": { "type": "number", "minimum": 0, "description": "時鐘速度：真實每秒前進幾分鐘" },
+        "tutorial": {
+          "type": "array",
+          "items": { "type": "object", "required": ["title", "body"], "properties": { "title": { "type": "string" }, "body": { "type": "string" } } }
+        },
+        "adminRepo": {
+          "type": "object",
+          "description": "後台 GitHub 模式要寫入的倉庫",
+          "properties": { "owner": { "type": "string" }, "repo": { "type": "string" }, "branch": { "type": "string" }, "path": { "type": "string" } }
+        }
+      }
+    },
+    "values": {
+      "type": "array",
+      "description": "價值面向（像 HEART 那樣的縮寫字母）",
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "properties": {
+          "id": { "type": "string", "description": "一個字母，例如 M" },
+          "name": { "type": "string" },
+          "en": { "type": "string" },
+          "color": { "$ref": "#/$defs/color" },
+          "desc": { "type": "string" }
+        }
+      }
+    },
+    "linkBasis": { "type": "array", "items": { "type": "string" }, "description": "協作連結的「依據」選項" },
+    "phases": { "type": "array", "items": { "type": "string" }, "description": "細項時程的建議選項（也可自由填寫）" },
+    "islands": {
+      "type": "array",
+      "description": "理念島。陣列順序 = 編號 01、02…",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "q", "r", "items"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "name": { "type": "string" },
+          "icon": { "type": "string", "description": "一個 emoji" },
+          "color": { "$ref": "#/$defs/color" },
+          "landmark": { "enum": ["school", "farm", "harbor", "library", "tech", "sports", "temple", "heart", "hall", "home", "garden", "art", "puzzle", "globe"], "description": "島中央的 3D 地標" },
+          "q": { "type": "integer", "description": "六角格座標（axial q），相鄰的島才會有橋" },
+          "r": { "type": "integer", "description": "六角格座標（axial r），負數 = 北邊靠陸地" },
+          "tagline": { "type": "string" },
+          "quote": { "type": "string" },
+          "values": { "type": "array", "items": { "type": "string" }, "description": "values[].id" },
+          "source": { "type": "object", "properties": { "label": { "type": "string" }, "url": { "type": "string" } } },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "name"],
+              "properties": {
+                "id": { "type": "string", "description": "全站唯一，慣例為 <島id>-<序號>" },
+                "name": { "type": "string" },
+                "phase": { "type": "string" },
+                "target": { "type": "string", "description": "對象" },
+                "summary": { "type": "string" },
+                "points": { "type": "array", "items": { "type": "string" } },
+                "schedule": { "type": "string", "description": "推動時程" },
+                "image": { "type": "string", "description": "圖片網址或 assets/uploads/… 相對路徑" },
+                "link": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "description": "協作連結（一對多）",
+      "items": {
+        "type": "object",
+        "required": ["id", "from", "to", "title"],
+        "properties": {
+          "id": { "type": "string", "description": "代碼，例如 C1" },
+          "from": { "type": "string", "description": "islands[].id" },
+          "to": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "title": { "type": "string" },
+          "basis": { "type": "string" }
+        }
+      }
+    },
+    "personTypes": {
+      "type": "array",
+      "description": "人物類型：會在島與島之間搬運東西的小人",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "count"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "name": { "type": "string" },
+          "emoji": { "type": "string" },
+          "color": { "$ref": "#/$defs/color", "description": "衣服顏色" },
+          "count": { "type": "integer", "minimum": 0, "maximum": 30, "description": "地圖上有幾位" },
+          "desc": { "type": "string" },
+          "homes": { "type": "array", "items": { "type": "string" }, "description": "比較常去的島；空陣列 = 全島都去" },
+          "carry": {
+            "type": "array",
+            "items": { "type": "object", "required": ["emoji", "name"], "properties": { "emoji": { "type": "string" }, "name": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "seasons": {
+      "type": "object",
+      "required": ["mode", "list"],
+      "properties": {
+        "mode": { "enum": ["auto", "spring", "summer", "autumn", "winter"], "description": "auto = 依月份每三個月自動換季" },
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "months"],
+            "properties": {
+              "id": { "enum": ["spring", "summer", "autumn", "winter"] },
+              "name": { "type": "string" },
+              "title": { "type": "string" },
+              "emoji": { "type": "string" },
+              "months": { "type": "array", "items": { "type": "integer", "minimum": 1, "maximum": 12 }, "description": "每個月份必須剛好屬於一季" },
+              "tagline": { "type": "string" },
+              "accent": { "$ref": "#/$defs/color", "description": "介面主色" },
+              "focus": { "type": "array", "items": { "type": "string" }, "description": "本季焦點島" },
+              "particle": { "enum": ["petal", "firefly", "leaf", "snow"] }
+            }
+          }
+        }
+      }
+    },
+    "airport": {
+      "type": "object",
+      "description": "國際教育：離岸機場島的交流航班",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "island": { "type": "string", "description": "航班送達的島 id" },
+        "planes": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "partners": {
+          "type": "array",
+          "items": { "type": "object", "properties": { "flag": { "type": "string" }, "name": { "type": "string" }, "carry": { "type": "string" } } }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" }
+  }
+}

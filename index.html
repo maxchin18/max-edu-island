@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>MAX 教育理念島</title>
+  <meta name="description" content="一座島，一個教育信念。看見課程、老師、家長與社區如何彼此相連。">
+  <meta name="theme-color" content="#E58A4A">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MAX 教育理念島">
+  <meta property="og:description" content="一座島，一個教育信念。看見課程、老師、家長與社區如何彼此相連。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4 56 18v28L32 60 8 46V18z' fill='%234CC3A0'/%3E%3Cpath d='M32 16 46 24v16L32 48 18 40V24z' fill='%23fff' opacity='.85'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.168.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app" class="app">
+    <main id="stage" class="stage" aria-label="教育理念島 3D 地圖">
+      <div id="labels" class="labels" aria-hidden="true"></div>
+      <div id="loading" class="loading">
+        <div class="loading-hex"></div>
+        <p>島嶼正在浮出海面…</p>
+      </div>
+    </main>
+
+    <!-- 左上：品牌與控制 -->
+    <header class="hud-left">
+      <div class="brand card">
+        <div class="brand-big"><span id="brandTop">GROW</span><span id="brandBottom">TOGETHER.</span></div>
+        <div class="brand-side">
+          <strong id="brandTitle">孩子為本，一起長大</strong>
+          <span><b id="brandBadge">MAX</b> <span id="brandSubtitle">教育理念島</span></span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="card seg" role="group" aria-label="季節">
+          <span class="seg-label">季節</span>
+          <button class="seg-btn" data-season="auto" title="依日期自動換季（每三個月）"><i>🔄</i><small>自動</small></button>
+          <button class="seg-btn" data-season="spring" title="春"><i>🌸</i><small>春</small></button>
+          <button class="seg-btn" data-season="summer" title="夏"><i>☀️</i><small>夏</small></button>
+          <button class="seg-btn" data-season="autumn" title="秋"><i>🍁</i><small>秋</small></button>
+          <button class="seg-btn" data-season="winter" title="冬"><i>❄️</i><small>冬</small></button>
+        </div>
+        <div class="card seg" role="group" aria-label="時段">
+          <span class="seg-label clock" id="clock">07:00</span>
+          <button class="seg-btn" data-time="auto" title="時間自己流動"><i>⏱️</i><small>流動</small></button>
+          <button class="seg-btn" data-time="dawn" title="清晨"><i>🌅</i><small>清晨</small></button>
+          <button class="seg-btn" data-time="day" title="白天"><i>🌤️</i><small>白天</small></button>
+          <button class="seg-btn" data-time="dusk" title="黃昏"><i>🌇</i><small>黃昏</small></button>
+          <button class="seg-btn" data-time="night" title="夜晚"><i>🌙</i><small>夜晚</small></button>
+        </div>
+        <div class="card seg tools" role="group" aria-label="工具">
+          <button class="seg-btn" data-tool="tags" aria-pressed="false" title="顯示人物名牌"><i>🏷️</i><small>名牌</small></button>
+          <button class="seg-btn" data-tool="items" aria-pressed="true" title="顯示搬運的東西"><i>📦</i><small>搬運</small></button>
+          <button class="seg-btn" data-tool="links" aria-pressed="false" title="顯示協作連結線"><i>🔗</i><small>連結線</small></button>
+          <button class="seg-btn" data-tool="pause" aria-pressed="false" title="暫停"><i>⏸️</i><small>暫停</small></button>
+          <button class="seg-btn" data-tool="bird" aria-pressed="false" title="鳥瞰"><i>🛰️</i><small>鳥瞰</small></button>
+          <button class="seg-btn" data-tool="log" aria-pressed="false" title="島嶼日誌"><i>📓</i><small>日誌</small></button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 右上：視角按鈕 -->
+    <nav class="hud-right">
+      <button class="pill" id="btnHome" title="回到全景">⤢ 全景</button>
+      <button class="pill" id="btnList" title="顯示／隱藏清單">☰ 清單</button>
+      <button class="pill" id="btnQuality" title="切換畫質">✨ 高畫質</button>
+      <button class="pill" id="btnShare" title="複製分享連結">🔗 分享</button>
+      <button class="pill round" id="btnHelp" title="導覽">?</button>
+    </nav>
+
+    <!-- 季節橫幅 -->
+    <div id="seasonToast" class="season-toast" role="status" aria-live="polite"></div>
+
+    <!-- 左側詳情卡 -->
+    <section id="detail" class="detail card" hidden aria-live="polite"></section>
+
+    <!-- 小人資訊泡泡 -->
+    <div id="walkerPop" class="walker-pop card" hidden></div>
+
+    <!-- 右側索引 -->
+    <aside id="panel" class="panel">
+      <button class="sheet-handle" id="sheetHandle" aria-label="展開或收合清單"><span></span></button>
+      <div class="panel-view" id="indexView">
+        <div class="panel-head">
+          <p class="kicker" id="indexKicker">THE EDUCATION INDEX</p>
+          <h1 id="headline">讓每個孩子，都被看見。</h1>
+          <p class="meta" id="indexMeta"></p>
+          <p class="season-chip" id="seasonChip"></p>
+          <label class="search">
+            <span aria-hidden="true">🔍</span>
+            <input id="search" type="search" placeholder="搜尋理念、做法、關鍵字…" autocomplete="off">
+          </label>
+          <div class="tabs" role="tablist">
+            <button role="tab" class="tab" data-tab="islands" aria-selected="true">理念主題</button>
+            <button role="tab" class="tab" data-tab="links" aria-selected="false">協作連結 <b id="linkCount"></b></button>
+            <button role="tab" class="tab" data-tab="people" aria-selected="false">人物 <b id="peopleCount"></b></button>
+          </div>
+        </div>
+        <div class="panel-body" id="listBody"></div>
+        <footer class="panel-foot">
+          <span id="footer">© MAX</span>
+          <a href="admin/" class="admin-link">後台管理</a>
+        </footer>
+      </div>
+
+      <div class="panel-view" id="logView" hidden>
+        <div class="panel-head">
+          <div class="log-top">
+            <div>
+              <p class="kicker">ISLAND LOG</p>
+              <h2>島嶼日誌</h2>
+            </div>
+            <button class="icon-btn" id="logClose" aria-label="關閉日誌">✕</button>
+          </div>
+          <div class="tabs" role="tablist">
+            <button role="tab" class="tab" data-ltab="overview" aria-selected="false">島嶼概況</button>
+            <button role="tab" class="tab" data-ltab="log" aria-selected="true">日誌</button>
+          </div>
+        </div>
+        <div class="panel-body" id="overviewBody" hidden></div>
+        <div class="panel-body" id="logBody">
+          <div class="log-filters">
+            <span class="live"><i></i>LIVE</span>
+            <select id="logLink" aria-label="篩選協作連結"><option value="">全部連結</option></select>
+            <select id="logType" aria-label="篩選人物類型"><option value="">全部人物</option></select>
+          </div>
+          <ol class="log-list" id="logList"></ol>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 導覽 -->
+    <div id="tour" class="tour" hidden>
+      <div class="tour-card card">
+        <p class="kicker" id="tourKicker">HELLO, MAX / 01</p>
+        <h2 id="tourTitle"></h2>
+        <p id="tourBody"></p>
+        <div class="tour-dots" id="tourDots"></div>
+        <div class="tour-actions">
+          <button class="btn ghost" id="tourSkip">略過</button>
+          <button class="btn solid" id="tourNext">下一步 →</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="previewBar" class="preview-bar" hidden>👀 預覽草稿模式：這是後台尚未發布的內容 <a href="./">看已發布版本</a></div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <noscript><p style="padding:24px">這個網站需要開啟 JavaScript 才能顯示 3D 教育理念島。</p></noscript>
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
