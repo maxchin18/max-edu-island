@@ -44,6 +44,9 @@ export async function run() {
   };
 
   try {
+    // 首次造訪會自動跳出導覽，先關掉
+    await new Promise((r) => setTimeout(r, 1800));
+    if (!$('#tour').hidden) click('#tourSkip');
     ok('島名標籤數量', $$('.isl-label').length === D.islands.length, $$('.isl-label').length);
     ok('清單列數', $$('#listBody .row[data-island]').length === D.islands.length);
     ok('小人數量', W.walkers.list.length === D.personTypes.reduce((a, t) => a + (+t.count || 0), 0), W.walkers.list.length);
