@@ -253,8 +253,8 @@ mark { background: color-mix(in srgb, var(--accent) 30%, #fff); color: inherit; 
 .btn.solid { background: var(--ink); color: #fff; border-color: var(--ink); }
 .btn.solid:hover { background: #000; }
 
-.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 160%); z-index: 30; background: var(--ink); color: #fff; padding: 11px 18px; border-radius: 14px; font-size: 14px; font-weight: 700; transition: transform .35s ease; box-shadow: var(--shadow); max-width: calc(100vw - 32px); }
-.toast.show { transform: translate(-50%, 0); }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, calc(100% + 40px)); opacity: 0; pointer-events: none; z-index: 30; background: var(--ink); color: #fff; padding: 11px 18px; border-radius: 14px; font-size: 14px; font-weight: 700; transition: transform .35s ease, opacity .35s ease; box-shadow: var(--shadow); max-width: calc(100vw - 32px); }
+.toast.show { transform: translate(-50%, 0); opacity: 1; }
 .preview-bar { position: fixed; left: 50%; top: 10px; transform: translateX(-50%); z-index: 25; background: #FFF3C4; color: #6B5300; border: 1px solid #F1D97A; padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 700; box-shadow: var(--shadow); }
 .fallback { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 24px; color: var(--ink2); line-height: 1.8; }
 
