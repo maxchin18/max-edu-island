@@ -3,19 +3,49 @@ import { rng, emojiTexture, labelTexture, softDotTexture, clamp } from './util.j
 import { G, MAT } from './kit.js';
 import { makeBoat, makePlane, makeCar, makeTurbine, makeAerator } from './vehicles.js';
 import { WALK_Y } from './terrain.js';
+import { faceTexture, faceGeometry, wearsGlasses } from './faces.js';
 
 // 會動的一切：小人、鳥、雲、季節粒子、船、飛機、車、風機
 
 // ======================= 小人 =======================
 const skinMats = ['#F6D5BC', '#EBC09E', '#D9A880', '#F3CDB0'].map((c) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.75 }));
-const hairMats = ['#3A2E2A', '#5B4033', '#1F1B1A', '#8A6A4F', '#D9D3CC'].map((c) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.8 }));
+const hairMats = ['#3A2E2A', '#5B4033', '#1F1B1A', '#8A6A4F', '#6B4A2E'].map((c) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.8 }));
+const greyHairMats = ['#F0EEE9', '#DAD7D1', '#C2BEB8', '#A9A59F'].map((c) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.85 }));
+const bagMats = ['#FF8A80', '#FFD54F', '#4FC3F7', '#81C784', '#BA68C8'].map((c) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.6 }));
+const caneMat = new THREE.MeshStandardMaterial({ color: '#7A5638', roughness: 0.7 });
+
+// 年齡層：兒童小一號、頭比例大、背書包、走得蹦蹦跳跳；長者白髮、微駝、拄拐杖、走得慢
+const AGES = {
+  child: { scale: 0.8, head: 1.14, speed: [2.3, 3.0], swing: 0.7, bounce: 0.06 },
+  adult: { scale: 1.12, head: 1, speed: [1.9, 2.7], swing: 0.55, bounce: 0.035 },
+  elder: { scale: 1.05, head: 1, speed: [1.1, 1.45], swing: 0.3, bounce: 0.012 }
+};
+/** 人物類型可在資料裡設定 age：child / adult / elder；沒設定時 student 是兒童、elder 是長者 */
+export const ageOf = (type) => (AGES[type.age] ? type.age : type.id === 'student' ? 'child' : type.id === 'elder' ? 'elder' : 'adult');
 const pantsMat = new THREE.MeshStandardMaterial({ color: '#4F5D75', roughness: 0.8 });
 const bodyGeo = new THREE.CapsuleGeometry(0.2, 0.3, 4, 12);
 const legGeo = new THREE.CapsuleGeometry(0.075, 0.26, 3, 8);
 legGeo.translate(0, -0.2, 0);
-const headGeo = new THREE.SphereGeometry(0.18, 18, 14);
-const hairGeo = new THREE.SphereGeometry(0.19, 18, 10, 0, Math.PI * 2, 0, Math.PI * 0.55);
-const hitGeo = new THREE.CylinderGeometry(0.55, 0.55, 1.6, 8);
+// 手臂：袖子掛在肩膀下方，末端是手掌
+const armGeo = new THREE.CapsuleGeometry(0.058, 0.22, 3, 8);
+armGeo.translate(0, -0.15, 0);
+const handGeo = new THREE.SphereGeometry(0.068, 12, 10);
+const SHOULDER_Y = 0.87;
+const SHOULDER_X = 0.255;
+// Q 版比例：頭大一點，表情才看得清楚
+const HEAD_R = 0.23;
+const HEAD_Y = 1.16;
+const headGeo = new THREE.SphereGeometry(HEAD_R, 22, 16);
+const hairGeo = new THREE.SphereGeometry(HEAD_R + 0.012, 22, 10, 0, Math.PI * 2, 0, Math.PI * 0.52);
+// 禿頭只剩一圈頭髮（部分長者）
+const hairRingGeo = new THREE.SphereGeometry(HEAD_R + 0.012, 22, 8, 0, Math.PI * 2, Math.PI * 0.3, Math.PI * 0.24);
+const bunGeo = new THREE.SphereGeometry(0.085, 12, 10);
+const bagGeo = G.box(0.32, 0.34, 0.15, 0.05);
+const caneGeo = new THREE.CylinderGeometry(0.02, 0.022, 0.6, 8);
+const caneTopGeo = new THREE.TorusGeometry(0.05, 0.018, 6, 12, Math.PI);
+const faceGeo = faceGeometry(HEAD_R + 0.003);
+const hitGeo = new THREE.CylinderGeometry(0.55, 0.55, 1.7, 8);
+const REACTIONS = ['😊', '✨', '💗', '👍', '🎉', '🙌', '😄'];
 const ringGeo = new THREE.RingGeometry(0.42, 0.55, 28);
 ringGeo.rotateX(-Math.PI / 2);
 
@@ -55,6 +85,8 @@ export class Walkers {
 
   makeWalker(type, bodyMat, islandId, i) {
     const r = this.rnd;
+    const age = ageOf(type);
+    const A = AGES[age];
     const g = new THREE.Group();
     const legs = [];
     for (const s of [-0.09, 0.09]) {
@@ -68,24 +100,86 @@ export class Walkers {
     body.position.y = 0.66;
     body.castShadow = true;
     g.add(body);
-    const head = new THREE.Mesh(headGeo, skinMats[Math.floor(r() * skinMats.length)]);
-    head.position.y = 1.08;
+    // 頭、頭髮、臉放在同一個群組，才能一起抬頭看鏡頭
+    const headGroup = new THREE.Group();
+    headGroup.position.y = HEAD_Y;
+    headGroup.scale.setScalar(A.head);
+    g.add(headGroup);
+    if (age === 'elder') {
+      // 微微駝背，頭往前
+      body.rotation.x = 0.16;
+      headGroup.position.set(0, HEAD_Y - 0.04, 0.08);
+    }
+    if (age === 'child') {
+      const bag = new THREE.Mesh(bagGeo, bagMats[Math.floor(r() * bagMats.length)]);
+      bag.position.set(0, 0.72, -0.22);
+      bag.castShadow = true;
+      g.add(bag);
+    }
+    const skin = skinMats[Math.floor(r() * skinMats.length)];
+    const arms = [];
+    for (const s of [-1, 1]) {
+      const pivot = new THREE.Group();
+      pivot.position.set(s * SHOULDER_X, SHOULDER_Y, age === 'elder' ? 0.05 : 0);
+      pivot.rotation.z = s * 0.14;
+      const arm = new THREE.Mesh(armGeo, bodyMat);
+      arm.castShadow = true;
+      const hand = new THREE.Mesh(handGeo, skin);
+      hand.position.y = -0.33;
+      hand.castShadow = true;
+      pivot.add(arm, hand);
+      if (age === 'elder' && s === 1) {
+        // 右手拄拐杖
+        const cane = new THREE.Mesh(caneGeo, caneMat);
+        cane.position.y = -0.63;
+        cane.castShadow = true;
+        const top = new THREE.Mesh(caneTopGeo, caneMat);
+        top.position.set(0.05, -0.33, 0);
+        pivot.add(cane, top);
+      }
+      g.add(pivot);
+      arms.push({ pivot, hand, s });
+    }
+    const head = new THREE.Mesh(headGeo, skin);
     head.castShadow = true;
-    g.add(head);
-    const hair = new THREE.Mesh(hairGeo, hairMats[Math.floor(r() * hairMats.length)]);
-    hair.position.set(0, 1.1, -0.015);
-    hair.rotation.x = -0.25;
-    g.add(hair);
+    headGroup.add(head);
+    const hairMat = age === 'elder' ? greyHairMats[Math.floor(r() * greyHairMats.length)] : hairMats[Math.floor(r() * hairMats.length)];
+    const bald = age === 'elder' && r() < 0.4;
+    const hair = new THREE.Mesh(bald ? hairRingGeo : hairGeo, hairMat);
+    hair.position.set(0, 0.015, -0.01);
+    hair.rotation.x = -0.42;
+    headGroup.add(hair);
+    // 髮型變化：小孩雙馬尾、部分大人與長者綁髮髻
+    const style = r();
+    if (age === 'child' && style < 0.5) {
+      for (const sx of [-1, 1]) {
+        const tail = new THREE.Mesh(bunGeo, hairMat);
+        tail.position.set(sx * 0.22, 0.04, -0.06);
+        tail.scale.set(0.8, 1.15, 0.8);
+        headGroup.add(tail);
+      }
+    } else if (!bald && age !== 'child' && style < 0.35) {
+      const bun = new THREE.Mesh(bunGeo, hairMat);
+      bun.position.set(0, 0.12, -0.2);
+      headGroup.add(bun);
+    }
+    const glasses = wearsGlasses(type);
+    const face = new THREE.Mesh(faceGeo, new THREE.MeshStandardMaterial({
+      map: faceTexture('smile', glasses), transparent: true, roughness: 0.8, depthWrite: false,
+      polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2
+    }));
+    face.renderOrder = 2;
+    headGroup.add(face);
     const itemMat = new THREE.SpriteMaterial({ map: emojiTexture('📦'), depthWrite: false });
     const item = new THREE.Sprite(itemMat);
-    item.position.y = 1.72;
+    item.position.y = 1.86;
     item.scale.set(0.72, 0.72, 1);
     item.renderOrder = 5;
     g.add(item);
     const { tex, aspect } = labelTexture(type.name, type.color);
     const tag = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthWrite: false, depthTest: false }));
     tag.scale.set(0.42 * aspect, 0.42, 1);
-    tag.position.y = 2.3;
+    tag.position.y = 2.44;
     tag.visible = false;
     tag.renderOrder = 6;
     g.add(tag);
@@ -94,14 +188,15 @@ export class Walkers {
     ring.visible = false;
     g.add(ring);
     const hit = new THREE.Mesh(hitGeo, new THREE.MeshBasicMaterial({ visible: false }));
-    hit.position.y = 0.8;
+    hit.position.y = 0.85;
     g.add(hit);
-    g.scale.setScalar(1.12);
+    g.scale.setScalar(A.scale);
     this.group.add(g);
     const w = {
-      id: `${type.id}-${i}`, type, group: g, body, legs, item, tag, ring, hit,
-      island: islandId, path: [], seg: 0, segT: 0, speed: 1.9 + r() * 0.8, phase: r() * 10,
-      state: 'pause', wait: r() * 4, carry: null, link: null, dest: null, lane: (r() - 0.5) * 0.7
+      id: `${type.id}-${i}`, type, age, A, group: g, body, legs, arms, item, tag, ring, hit, face, glasses, headGroup, tilt: 0, wave: 0,
+      island: islandId, path: [], seg: 0, segT: 0, speed: A.speed[0] + r() * (A.speed[1] - A.speed[0]), phase: r() * 10,
+      state: 'pause', wait: r() * 4, carry: null, link: null, dest: null, lane: (r() - 0.5) * 0.7,
+      expr: 'smile', exprT: 0, shown: 'smile', blinkT: 1 + r() * 4, blinking: 0, hop: 0
     };
     hit.userData.walker = w;
     this.hits.push(hit);
@@ -153,6 +248,7 @@ export class Walkers {
       dest = ids[Math.floor(this.rnd() * ids.length)];
     }
     const hops = this.route(w.island, dest) || [w.island, dest];
+    w.group.position.y = WALK_Y;
     const pts = [w.group.position.clone()];
     for (let i = 0; i < hops.length - 1; i++) {
       const A = this.info.get(hops[i]), B = this.info.get(hops[i + 1]);
@@ -161,8 +257,8 @@ export class Walkers {
       const adj = A.neighbors.some((n) => n.id === B.id);
       if (adj) {
         pts.push(new THREE.Vector3(A.x + u.x * 2.4 + nx, WALK_Y, A.z + u.y * 2.4 + nz));
-        pts.push(new THREE.Vector3(A.x + u.x * 7.6 + nx, WALK_Y + 0.05, A.z + u.y * 7.6 + nz));
-        pts.push(new THREE.Vector3(B.x - u.x * 7.6 + nx, WALK_Y + 0.05, B.z - u.y * 7.6 + nz));
+        pts.push(new THREE.Vector3(A.x + u.x * 7.6 + nx, WALK_Y + 0.08, A.z + u.y * 7.6 + nz));
+        pts.push(new THREE.Vector3(B.x - u.x * 7.6 + nx, WALK_Y + 0.08, B.z - u.y * 7.6 + nz));
         pts.push(new THREE.Vector3(B.x - u.x * 2.4 + nx, WALK_Y, B.z - u.y * 2.4 + nz));
       } else {
         pts.push(new THREE.Vector3(B.x - u.x * 2.4, WALK_Y, B.z - u.y * 2.4));
@@ -179,17 +275,71 @@ export class Walkers {
     w.item.material.map = emojiTexture(carry.emoji || '📦');
     w.item.material.needsUpdate = true;
     w.state = 'walk';
+    // 出發：微笑，偶爾眨個單眼
+    if (this.rnd() < 0.18) this.setExpr(w, 'wink', 1.1);
+    else this.setExpr(w, 'smile');
     this.world.emit('log', { kind: 'depart', walker: w, from: w.island, to: dest, link: w.link, carry });
   }
 
+  /** 換表情；hold > 0 表示幾秒後回到微笑 */
+  setExpr(w, expr, hold = 0) {
+    w.expr = expr;
+    w.exprT = hold;
+    if (w.blinking <= 0) this.showFace(w, expr);
+  }
+
+  showFace(w, expr) {
+    if (w.shown === expr) return;
+    w.shown = expr;
+    w.face.material.map = faceTexture(expr, w.glasses);
+  }
+
+  updateFace(w, dt) {
+    if (w.exprT > 0) {
+      w.exprT -= dt;
+      if (w.exprT <= 0) this.setExpr(w, 'smile');
+    }
+    if (w.blinking > 0) {
+      w.blinking -= dt;
+      if (w.blinking <= 0) this.showFace(w, w.expr);
+      return;
+    }
+    w.blinkT -= dt;
+    if (w.blinkT <= 0) {
+      w.blinkT = 2 + this.rnd() * 4;
+      // 瞇眼笑的時候不用眨眼
+      if (w.expr !== 'happy') { w.blinking = 0.13; this.showFace(w, 'blink'); }
+    }
+  }
+
   update(dt, t) {
+    const cam = this.world.camera.position;
     for (const w of this.list) {
+      this.updateFace(w, dt);
       if (w.state === 'pause') {
         w.wait -= dt;
         w.legs[0].rotation.x = w.legs[1].rotation.x = 0;
+        // 停下來時轉身面向鏡頭，抵達時開心地跳一下
+        const p = w.group.position;
+        const yaw = Math.atan2(cam.x - p.x, cam.z - p.z);
+        let d = yaw - w.group.rotation.y;
+        d = Math.atan2(Math.sin(d), Math.cos(d));
+        w.group.rotation.y += d * Math.min(1, dt * 5);
+        // 抬頭：鏡頭越高抬越多
+        const dist = Math.hypot(cam.x - p.x, cam.z - p.z);
+        const look = Math.min(0.55, Math.atan2(cam.y - p.y - 1.2, dist) * 0.6);
+        w.tilt += (look - w.tilt) * Math.min(1, dt * 4);
+        w.headGroup.rotation.x = -w.tilt;
+        this.poseArms(w, t, dt, 0);
+        if (w.hop > 0) {
+          w.hop = Math.max(0, w.hop - dt);
+          p.y = WALK_Y + Math.abs(Math.sin((0.7 - w.hop) * Math.PI * 2.85)) * 0.22 * (w.hop / 0.7);
+        }
         if (w.wait <= 0) this.planTrip(w);
         continue;
       }
+      // 走路時偶爾露出不同表情
+      if (w.exprT <= 0 && this.rnd() < dt * 0.05) this.setExpr(w, this.rnd() < 0.5 ? 'grin' : 'oh', 0.9);
       let move = w.speed * dt;
       while (move > 0 && w.seg < w.path.length - 1) {
         const a = w.path[w.seg], b = w.path[w.seg + 1];
@@ -201,9 +351,14 @@ export class Walkers {
       if (w.seg >= w.path.length - 1) {
         w.group.position.copy(w.path[w.path.length - 1]);
         w.state = 'pause';
-        w.wait = 1.5 + this.rnd() * 3.5;
+        w.wait = 1.8 + this.rnd() * 3.5;
         const from = w.island;
         w.island = w.dest;
+        // 抵達：開心的表情、跳一下、頭上冒出反應
+        this.setExpr(w, this.rnd() < 0.55 ? 'happy' : 'grin', w.wait);
+        w.hop = 0.7;
+        w.wave = 1.6 + this.rnd() * 0.8;
+        w.item.material.map = emojiTexture(REACTIONS[Math.floor(this.rnd() * REACTIONS.length)]);
         this.world.emit('log', { kind: this.rnd() < 0.45 ? 'handoff' : 'arrive', walker: w, from, to: w.dest, link: w.link, carry: w.carry });
         continue;
       }
@@ -213,11 +368,48 @@ export class Walkers {
       let d = yaw - w.group.rotation.y;
       d = Math.atan2(Math.sin(d), Math.cos(d));
       w.group.rotation.y += d * Math.min(1, dt * 10);
-      w.phase += dt * w.speed * 5.2;
-      const sw = Math.sin(w.phase) * 0.55;
+      w.phase += dt * w.speed * (w.age === 'elder' ? 6.5 : 5.2);
+      const sw = Math.sin(w.phase) * w.A.swing;
       w.legs[0].rotation.x = sw;
       w.legs[1].rotation.x = -sw;
-      w.body.position.y = 0.66 + Math.abs(Math.cos(w.phase)) * 0.035;
+      this.poseArms(w, t, dt, sw);
+      const bob = Math.abs(Math.cos(w.phase)) * w.A.bounce;
+      w.body.position.y = 0.66 + bob;
+      w.tilt += (0.12 - w.tilt) * Math.min(1, dt * 3);
+      w.headGroup.rotation.x = -w.tilt;
+      w.headGroup.position.y = HEAD_Y + bob - (w.age === 'elder' ? 0.04 : 0);
+    }
+  }
+
+  /** 手的姿勢：走路時前後擺（與腳相反），抵達時舉起右手揮一揮，停著時自然下垂輕晃 */
+  poseArms(w, t, dt, swing) {
+    const elder = w.age === 'elder';
+    // 長者右手拄拐杖，改用左手揮
+    const [L, R] = w.arms;
+    const waver = elder ? L : R;
+    const other = elder ? R : L;
+    if (w.wave > 0) w.wave = Math.max(0, w.wave - dt);
+    const k = Math.min(1, dt * 10);
+    const ease = (a, prop, v) => { a.pivot.rotation[prop] += (v - a.pivot.rotation[prop]) * k; };
+    if (swing) {
+      const amp = elder ? 0.6 : w.age === 'child' ? 1.1 : 0.9;
+      ease(L, 'x', -swing * amp);
+      ease(R, 'x', elder ? swing * 0.4 - 0.12 : swing * amp);
+      ease(L, 'z', -0.14);
+      ease(R, 'z', 0.14);
+      return;
+    }
+    const idle = Math.sin(t * 1.6 + w.phase) * 0.05;
+    ease(other, 'x', elder && other === R ? -0.12 : idle);
+    ease(other, 'z', other.s * 0.14);
+    if (w.wave > 0) {
+      // 舉手揮動
+      const up = Math.min(1, w.wave * 2.5);
+      ease(waver, 'x', -0.25 * up);
+      ease(waver, 'z', waver.s * ((2.55 + Math.sin(t * 13) * 0.32) * up + 0.14 * (1 - up)));
+    } else {
+      ease(waver, 'x', -idle);
+      ease(waver, 'z', waver.s * 0.14);
     }
   }
 
@@ -234,6 +426,8 @@ export class Walkers {
       w.item.visible = this.showItems && !dim;
       w.ring.visible = focus;
       w.legs.forEach((l) => (l.visible = !dim));
+      w.arms.forEach((a) => (a.hand.visible = !dim));
+      w.face.material.opacity = dim ? 0.15 : 1;
     }
   }
 
@@ -772,7 +966,7 @@ export class Traffic {
       while (i < c.lens.length - 1 && c.lens[i] < c.d) i++;
       const a = c.road[i - 1], b = c.road[i];
       const f = (c.d - c.lens[i - 1]) / (c.lens[i] - c.lens[i - 1] || 1);
-      c.mesh.position.set(a[0] + (b[0] - a[0]) * f, 1.55, a[1] + (b[1] - a[1]) * f);
+      c.mesh.position.set(a[0] + (b[0] - a[0]) * f, 1.58, a[1] + (b[1] - a[1]) * f);
       c.mesh.rotation.y = Math.atan2(b[0] - a[0], b[1] - a[1]);
     }
     if (this.flightPath) {

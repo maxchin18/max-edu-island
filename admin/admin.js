@@ -2503,6 +2503,29 @@
     updTotal();
 
     const descIn = textInput(p, 'desc', { onInput: mark, multiline: true, rows: 2 });
+    // 眼鏡：沒設定時前台會讓老師、耆老、大學夥伴戴眼鏡
+    const glassesSel = h('select', { 'aria-label': '眼鏡' },
+      h('option', { value: 'auto' }, '自動（老師、耆老、大學夥伴會戴）'),
+      h('option', { value: 'yes' }, '戴眼鏡 👓'),
+      h('option', { value: 'no' }, '不戴眼鏡'));
+    glassesSel.value = p.glasses === true ? 'yes' : p.glasses === false ? 'no' : 'auto';
+    glassesSel.addEventListener('change', () => {
+      if (glassesSel.value === 'auto') delete p.glasses;
+      else p.glasses = glassesSel.value === 'yes';
+      mark();
+    });
+    // 年齡層：決定小人的身高、髮色、書包或拐杖、走路速度
+    const ageSel = h('select', { 'aria-label': '年齡層' },
+      h('option', { value: 'auto' }, '自動（學生是兒童、耆老是長者）'),
+      h('option', { value: 'child' }, '兒童 🧒（小一號、背書包）'),
+      h('option', { value: 'adult' }, '成人 🧑'),
+      h('option', { value: 'elder' }, '長者 👴（白髮、拄拐杖、走得慢）'));
+    ageSel.value = ['child', 'adult', 'elder'].includes(p.age) ? p.age : 'auto';
+    ageSel.addEventListener('change', () => {
+      if (ageSel.value === 'auto') delete p.age;
+      else p.age = ageSel.value;
+      mark();
+    });
     const homesBox = checkGroup({ get: () => p.homes, set: (v) => { p.homes = v; }, onChange: onBasic, options: islandOptions() });
 
     const carryBox = h('div', { class: 'carry-editor' });
@@ -2536,6 +2559,8 @@
         field('ID（代號）', idIn, '英數字、- 或 _，例如 student。'),
         field('圖示', h('div', { class: 'emoji-field' }, emojiIn, picks), null, { wide: true }),
         field('代表色', colorIn),
+        field('年齡層', ageSel, '決定小人的身高、髮色與走路樣子。'),
+        field('眼鏡', glassesSel, '小人臉上會不會戴眼鏡。'),
         field('島上人數（0–30）', h('div', { class: 'count-field' }, countRange, countNum), totalEl),
         field('介紹', descIn, '前台點小人時會顯示。', { wide: true }))),
       section('常去的島', homesBox, h('p', { class: 'hint' }, '不勾 = 全島都會去。')),

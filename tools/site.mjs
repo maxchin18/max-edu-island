@@ -10,7 +10,7 @@
 //   node tools/site.mjs export-md [輸出檔]     匯出全部內容為 Markdown（預設 docs/CONTENT.md）
 //   node tools/site.mjs add-island --name 名稱 [--icon 🌱 --color #4CC3A0 --landmark school --tagline .. --quote .. --values M,A --q 0 --r 3]
 //   node tools/site.mjs add-item <島嶼id> --name 名稱 [--phase 短期 --target 對象 --summary 說明 --points "重點1|重點2" --schedule .. --link URL]
-//   node tools/site.mjs add-person --name 名稱 --emoji 🙂 [--color #F5B041 --count 3 --carry "🧺:菜籃,🌾:稻穗" --homes food,green --desc 說明]
+//   node tools/site.mjs add-person --name 名稱 --emoji 🙂 [--color #F5B041 --count 3 --carry "🧺:菜籃,🌾:稻穗" --homes food,green --desc 說明 --glasses true --age child|adult|elder]
 //   node tools/site.mjs add-link --from 島id --to 島id,島id --title 說明 [--basis 課程實踐]
 //   node tools/site.mjs set <路徑> <值>        例：set site.headline "讓每個孩子，都被看見。"、set islands.food.tagline "..."
 //   node tools/site.mjs remove island|item|link|person|value <id>
@@ -114,6 +114,8 @@ export function validate(d) {
     walkers += Number(t.count) || 0;
     for (const h of t.homes || []) if (!ids.has(h)) E(`${at} homes 指向不存在的島「${h}」`);
     if (!(t.carry || []).length) W(`${at} 沒有設定 carry（搬運的東西）`);
+    if (t.glasses != null && typeof t.glasses !== 'boolean') E(`${at} glasses 必須是 true 或 false`);
+    if (t.age != null && !['child', 'adult', 'elder'].includes(t.age)) E(`${at} age 必須是 child、adult 或 elder`);
   }
   if (walkers > 120) W(`地圖上共有 ${walkers} 位小人，超過 120 可能讓手機變慢`);
   const seasons = d.seasons?.list || [];
@@ -251,7 +253,7 @@ function main() {
     const what = a._[1] || 'islands';
     if (what === 'islands') d.islands.forEach((i, k) => console.log(`${String(k + 1).padStart(2, '0')} ${i.id.padEnd(12)} ${i.icon || ''} ${i.name}（${i.items.length} 細項，位置 ${i.q},${i.r}，地標 ${i.landmark}）`));
     else if (what === 'links') d.links.forEach((l) => console.log(`${l.id.padEnd(4)} ${l.from} → ${l.to.join(',')}｜${l.title}（${l.basis}）`));
-    else if (what === 'people') d.personTypes.forEach((t) => console.log(`${t.id.padEnd(16)} ${t.emoji} ${t.name} ×${t.count}｜${(t.carry || []).map((c) => c.emoji + c.name).join(' ')}`));
+    else if (what === 'people') d.personTypes.forEach((t) => console.log(`${t.id.padEnd(16)} ${t.emoji} ${t.name} ×${t.count}（${{ child: '兒童', adult: '成人', elder: '長者' }[t.age] || '自動'}）｜${(t.carry || []).map((c) => c.emoji + c.name).join(' ')}`));
     else if (what === 'values') d.values.forEach((v) => console.log(`${v.id} ${v.name}（${v.en}）${v.color}`));
     else if (what === 'seasons') d.seasons.list.forEach((s) => console.log(`${s.id.padEnd(7)} ${s.emoji} ${s.title} 月份 ${s.months.join(',')}｜焦點 ${s.focus.join(',')}`));
     else console.error('可列出：islands | links | people | values | seasons');
@@ -307,6 +309,8 @@ function main() {
       id: uniq(a.id || slug(a.en || '', 'person'), taken), name: a.name, emoji: a.emoji || '🙂', color: a.color || '#F5B041',
       count: Number(a.count ?? 3), desc: a.desc || '', homes: list(a.homes), carry: carry.length ? carry : [{ emoji: '📦', name: '物資' }]
     };
+    if (a.glasses != null) t.glasses = a.glasses === true || a.glasses === 'true';
+    if (a.age) t.age = a.age;
     d.personTypes.push(t);
     console.log(`新增人物類型 ${t.id}`);
     save(d, dry);

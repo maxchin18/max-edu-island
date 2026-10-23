@@ -1453,7 +1453,8 @@
           "emoji": "📘",
           "name": "自編繪本"
         }
-      ]
+      ],
+      "age": "child"
     },
     {
       "id": "teacher",
@@ -1481,7 +1482,8 @@
           "emoji": "📚",
           "name": "教材"
         }
-      ]
+      ],
+      "age": "adult"
     },
     {
       "id": "parent",
@@ -1508,7 +1510,8 @@
           "emoji": "💬",
           "name": "對話"
         }
-      ]
+      ],
+      "age": "adult"
     },
     {
       "id": "farmer",
@@ -1534,7 +1537,8 @@
           "emoji": "🌱",
           "name": "菜苗"
         }
-      ]
+      ],
+      "age": "adult"
     },
     {
       "id": "fisher",
@@ -1560,7 +1564,8 @@
           "emoji": "🦐",
           "name": "蝦子"
         }
-      ]
+      ],
+      "age": "adult"
     },
     {
       "id": "elder",
@@ -1581,7 +1586,8 @@
           "emoji": "📜",
           "name": "老照片"
         }
-      ]
+      ],
+      "age": "elder"
     },
     {
       "id": "volunteer",
@@ -1603,7 +1609,8 @@
           "emoji": "🌳",
           "name": "樹苗"
         }
-      ]
+      ],
+      "age": "adult"
     },
     {
       "id": "partner",
@@ -1626,7 +1633,8 @@
           "emoji": "📊",
           "name": "數據"
         }
-      ]
+      ],
+      "age": "adult"
     },
     {
       "id": "global-partner",
@@ -1653,7 +1661,8 @@
           "emoji": "🎁",
           "name": "文化禮物"
         }
-      ]
+      ],
+      "age": "adult"
     }
   ],
   "seasons": {

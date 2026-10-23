@@ -73,7 +73,8 @@ export class World {
   initScene() {
     const scene = new THREE.Scene();
     this.scene = scene;
-    this.camera = new THREE.PerspectiveCamera(36, 1, 0.5, 2600);
+    // 近裁切面不要太小，深度精度才夠，遠處的面不會閃爍
+    this.camera = new THREE.PerspectiveCamera(36, 1, 1.5, 2600);
     this.camera.position.copy(DEFAULT_TARGET).add(DEFAULT_OFFSET).multiplyScalar(1.55);
     this.camera.lookAt(DEFAULT_TARGET);
     scene.fog = new THREE.Fog('#E4F6FB', 220, 900);

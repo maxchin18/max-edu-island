@@ -121,6 +121,8 @@
           "count": { "type": "integer", "minimum": 0, "maximum": 30, "description": "地圖上有幾位" },
           "desc": { "type": "string" },
           "homes": { "type": "array", "items": { "type": "string" }, "description": "比較常去的島；空陣列 = 全島都去" },
+          "glasses": { "type": "boolean", "description": "小人戴不戴眼鏡；不設定時 teacher、elder、partner 會戴" },
+          "age": { "enum": ["child", "adult", "elder"], "description": "年齡層：兒童（小一號、背書包）、成人、長者（白髮、駝背、拄拐杖、走得慢）；不設定時 student 是兒童、elder 是長者" },
           "carry": {
             "type": "array",
             "items": { "type": "object", "required": ["emoji", "name"], "properties": { "emoji": { "type": "string" }, "name": { "type": "string" } } }

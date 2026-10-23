@@ -10,7 +10,7 @@ export const ISLAND_R = 8.7; // 沙岸外緣（外接圓半徑）
 export const GRASS_R = 8.0;
 export const TOP = 1.45; // 草地頂面
 export const PLAZA_Y = TOP + 0.1;
-export const WALK_Y = TOP + 0.11;
+export const WALK_Y = TOP + 0.08;
 
 const gold = mat('#E3B54A', { roughness: 0.35, metalness: 0.5 });
 const teal = mat('#4CC3A0', { roughness: 0.6 });
@@ -65,7 +65,7 @@ export function buildIslands(data, ctx) {
     for (const nb of it.neighbors) {
       const yaw = Math.atan2(nb.u.x, nb.u.y);
       const mid = 5.0;
-      b.add(G.box(1.35, 0.12, 4.6, 0.05), MAT.path, M(it.x + nb.u.x * mid, TOP + 0.04, it.z + nb.u.y * mid, 0, yaw, 0));
+      b.add(G.box(1.35, 0.12, 4.6, 0.05), MAT.path, M(it.x + nb.u.x * mid, TOP + 0.01, it.z + nb.u.y * mid, 0, yaw, 0));
     }
 
     // 地標
@@ -100,10 +100,11 @@ export function buildIslands(data, ctx) {
 function bridge(ctx, x, z, yaw) {
   const p = new Placer(ctx.batch, x, TOP, z, yaw);
   const L = 4.9;
-  p.box(1.7, 0.16, L, MAT.wood, 0, -0.06, 0, 0, 0.04);
+  // 橋面頂端比步道高 0.09，避免兩個面重疊閃爍
+  p.box(1.7, 0.16, L, MAT.wood, 0, 0, 0, 0, 0.04);
   for (const side of [-0.82, 0.82]) {
-    p.box(0.07, 0.07, L, MAT.wood, side, 0.52, 0, 0, 0.02);
-    for (let k = -2; k <= 2; k++) p.box(0.08, 0.5, 0.08, MAT.woodDark, side, 0.05, k * 1.1, 0, 0.02);
+    p.box(0.07, 0.07, L, MAT.wood, side, 0.6, 0, 0, 0.02);
+    for (let k = -2; k <= 2; k++) p.box(0.08, 0.5, 0.08, MAT.woodDark, side, 0.13, k * 1.1, 0, 0.02);
   }
   // 橋墩
   for (const side of [-0.6, 0.6]) p.add(G.cyl(0.12, 0.14, 1.8, 10), MAT.woodDark, side, -0.95, 0);
@@ -230,8 +231,8 @@ const LANDMARKS = {
     const lx = -1.2, lz = -1.0;
     p.cyl(0.78, 0.88, 0.35, MAT.stone, lx, 0, lz, 22);
     p.cyl(0.43, 0.6, 3.0, MAT.white, lx, 0.35, lz, 22);
-    p.cyl(0.555, 0.58, 0.42, T.main, lx, 0.9, lz, 22);
-    p.cyl(0.5, 0.525, 0.42, T.main, lx, 2.0, lz, 22);
+    p.cyl(0.575, 0.6, 0.42, T.main, lx, 0.9, lz, 22);
+    p.cyl(0.52, 0.545, 0.42, T.main, lx, 2.0, lz, 22);
     p.cyl(0.62, 0.62, 0.08, MAT.dark, lx, 3.35, lz, 22);
     p.add(G.torus(0.6, 0.025, 6, 28), MAT.dark, lx, 3.62, lz, Math.PI / 2, 0, 0);
     p.cyl(0.34, 0.34, 0.5, MAT.beacon, lx, 3.43, lz, 18, { cast: false });
@@ -305,7 +306,7 @@ const LANDMARKS = {
   sports(p, T) {
     p.add(G.stadium(6.0, 3.8, 0.7, 0.06), track, 0, 0.0, 0, 0, Math.PI / 2, 0);
     p.add(G.stadium(4.6, 2.4, 0, 0.05), turf, 0, 0.005, 0, 0, Math.PI / 2, 0);
-    p.add(G.stadium(5.3, 3.1, 0.035, 0.065), MAT.white, 0, 0, 0, 0, Math.PI / 2, 0);
+    p.add(G.stadium(5.3, 3.1, 0.035, 0.09), MAT.white, 0, 0, 0, 0, Math.PI / 2, 0);
     for (const s of [-1, 1]) {
       const z = s * 1.55;
       p.rod([-0.45, 0, z], [-0.45, 0.5, z], 0.025, MAT.white);

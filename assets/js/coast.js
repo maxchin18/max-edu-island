@@ -84,10 +84,10 @@ export function buildCoast(ctx) {
   // 道路（與車道）
   const road = offsetLine(coast, 19);
   const roadVis = road.filter(([x, z]) => x > -240 && x < 240 && z > -200 && z < 130);
-  b.add(ribbon(roadVis, 3.2, LAND_Y - 0.02), mat('#A9B1B8', { roughness: 0.95 }), null, { cast: false });
+  b.add(ribbon(roadVis, 3.2, LAND_Y + 0.03), mat('#A9B1B8', { roughness: 0.95 }), null, { cast: false });
   for (let i = 0; i < roadVis.length - 1; i += 2) {
     const [x1, z1] = roadVis[i], [x2, z2] = roadVis[i + 1];
-    b.add(G.box(0.18, 0.03, 1.5, 0), MAT.white, M((x1 + x2) / 2, LAND_Y + 0.01, (z1 + z2) / 2, 0, Math.atan2(x2 - x1, z2 - z1), 0), { cast: false });
+    b.add(G.box(0.18, 0.03, 1.5, 0), MAT.white, M((x1 + x2) / 2, LAND_Y + 0.055, (z1 + z2) / 2, 0, Math.atan2(x2 - x1, z2 - z1), 0), { cast: false });
   }
   ctx.roads.push(offsetLine(coast, 18.2).filter(([x, z]) => x > -240 && x < 240 && z < 130));
   ctx.roads.push(offsetLine(coast, 19.8).filter(([x, z]) => x > -240 && x < 240 && z < 130).reverse());
@@ -352,7 +352,7 @@ function lighthouseIslet(ctx, shapes, x, z) {
   p.cyl(0.7, 1.05, 6.4, MAT.white, 0, 0.5, 0, 22);
   for (const y0 of [1.4, 3.4, 5.4]) {
     const r0 = 1.05 - (0.35 * (y0 - 0.5)) / 6.4;
-    p.cyl(r0 - 0.04 + 0.015, r0 + 0.015, 0.8, MAT.red, 0, y0, 0, 22);
+    p.cyl(r0 - 0.044 + 0.04, r0 + 0.04, 0.8, MAT.red, 0, y0, 0, 22);
   }
   p.cyl(1.0, 1.0, 0.12, MAT.dark, 0, 6.9, 0, 22);
   p.cyl(0.55, 0.55, 0.8, MAT.beacon, 0, 7.0, 0, 18, { cast: false });

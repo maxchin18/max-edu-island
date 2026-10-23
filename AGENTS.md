@@ -26,7 +26,7 @@ node tools/site.mjs export-md         # 匯出全文到 docs/CONTENT.md（方便
 # 新增
 node tools/site.mjs add-island --name "閱讀推廣" --en reading-plus --icon 📖 --color "#A787D9" --landmark library --tagline "..." --values M,X
 node tools/site.mjs add-item food --name "校園堆肥" --phase 中期 --target 中年級 --summary "..." --points "廚餘分類|堆肥觀察|回到菜園"
-node tools/site.mjs add-person --name "營養師" --en dietitian --emoji 🥗 --color "#76C267" --count 2 --carry "🥗:營養菜單,🍎:水果" --homes food,sport --desc "..."
+node tools/site.mjs add-person --name "營養師" --en dietitian --emoji 🥗 --color "#76C267" --count 2 --carry "🥗:營養菜單,🍎:水果" --homes food,sport --desc "..." --age adult --glasses true
 node tools/site.mjs add-link --from food --to sport,sel --title "..." --basis 校本理念
 
 # 修改任一欄位（陣列可用 id 定位）
@@ -50,7 +50,7 @@ node tools/site.mjs remove person volunteer
 | `islands[]` | 理念島，順序 = 編號 | `id`、`name`、`icon`、`color`、`landmark`、`q`/`r`、`values[]`、`items[]` |
 | `islands[].items[]` | 實踐細項 | `id`（全站唯一）、`phase`、`target`、`summary`、`points[]`、`schedule`、`image`、`link` |
 | `links[]` | 協作連結（一對多） | `id`（C1…）、`from`、`to[]`、`title`、`basis` |
-| `personTypes[]` | 人物類型（地圖上走來走去的小人） | `id`、`emoji`、`color`、`count`（0–30）、`homes[]`、`carry[]` |
+| `personTypes[]` | 人物類型（地圖上走來走去的小人，有表情） | `id`、`emoji`、`color`、`count`（0–30）、`homes[]`、`carry[]`、`age`（child/adult/elder）、`glasses`（可省略） |
 | `seasons` | 四季 | `mode`（auto/spring/…）、`list[].months`（每月剛好一季）、`accent`、`focus[]`、`particle` |
 | `airport` | 國際教育交流航班 | `enabled`、`island`、`planes`（0–4）、`partners[]` |
 
